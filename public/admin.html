@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    </head>
+<body>
+    <h1>Admin Panel - New Challenge</h1>
+    <form id="new-challenge-form">
+        <div>
+            <label for="title">Challenge Title:</label><br>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <br>
+        <div>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+        <br>
+        <div>
+            <label for="hashtag">Submission Hashtag:</label><br>
+            <input type="text" id="hashtag" name="hashtag" required>
+        </div>
+        <br>
+        <div>
+            <label for="secretKey">Secret Key:</label><br>
+            <input type="password" id="secretKey" name="secretKey" required>
+        </div>
+        <br>
+        <button type="submit">Set as Active Challenge</button>
+    </form>
+    <p id="response-message"></p>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
