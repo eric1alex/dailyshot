@@ -1,40 +1,13 @@
-// server.js (Final version with checks)
+// server.js (Production Ready)
 
-const fs = require('fs'); // Built-in Node.js module for file system
-const path = require('path');
+require('dotenv').config(); // This loads variables for local dev, but Render provides them automatically
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
+const Challenge = require('./models/challengeModel');
 
-// --- PRE-FLIGHT CHECKS ---
-// Check 1: Does the .env file exist?
-const envPath = path.resolve(__dirname, '.env');
-if (!fs.existsSync(envPath)) {
-    console.error('----------------------------------------------------');
-    console.error('❌ FATAL ERROR: The .env file is missing.');
-    console.error('Please create a file named ".env" in the root of your project.');
-    console.error('----------------------------------------------------');
-    process.exit(1); // Stop the application
-}
-
-// If the file exists, THEN load it.
-require('dotenv').config();
-
-// Check 2: Is the MONGO_URI variable loaded from the .env file?
-if (!process.env.MONGO_URI) {
-    console.error('----------------------------------------------------');
-    console.error('❌ FATAL ERROR: The MONGO_URI variable was not found.');
-    console.error('Please make sure your .env file contains a line like:');
-    console.error('MONGO_URI=mongodb+srv://user:password@cluster...');
-    console.error('----------------------------------------------------');
-    process.exit(1); // Stop the application
-}
-// --- END OF CHECKS ---
-
-
-// --- Now we can safely proceed ---
 const app = express();
 const PORT = process.env.PORT || 3000;
-const Challenge = require('./models/challengeModel');
 
 // Database Connection
 mongoose.connect(process.env.MONGO_URI)
@@ -80,5 +53,5 @@ app.post('/api/admin/challenge', async (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  console.log(`✅ Server is running on http://localhost:${PORT}`);
+  console.log(`✅ Server is running on port ${PORT}`);
 });
